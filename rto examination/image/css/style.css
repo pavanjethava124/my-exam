@@ -1,0 +1,115 @@
+
+.footer
+{
+	background: #000;
+	color: #8a8a8a;
+	font-size: 14px;
+	padding: 60px 0 20px;
+}
+.footer-contain
+{
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	display: flex;
+}
+.footer p
+{
+	color: #8a8a8a;
+}
+.footer h3
+{
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.footer-col-1,.footer-col-2,.footer-3,.footer-col-4,footer-col-5
+{
+	min-width: 250px;
+	margin-bottom: 20px;
+}
+
+.footer-col-1
+{
+	flex-basis: 30%;
+}
+.footer-col-2
+{
+	flex: 1;
+	text-align: center;
+}
+.footer-col-2 img
+{
+	width: 100px;
+	margin-bottom: 10px;
+}
+.footer-col-3,.footer-col-4,.footer-col-5
+{
+	flex-basis: 12%;
+	text-align: center;
+}
+ul
+{
+	list-style: none;
+}
+.rto img
+{
+	width: 100px;
+	margin-top: 20px;
+}
+.footer hr
+{
+	border: none;
+	background: #b5b5b5;
+	height: 1px;
+	margin: 20px 0;
+}
+.copyright
+{
+	text-align: center;
+}
+.topnav .search-container {
+	float: right;
+}
+
+.topnav input[type=text] {
+	padding: 6px;
+	margin-top: 8px;
+	font-size: 17px;
+	border: none;
+}
+
+.topnav .search-container button {
+	float: right;
+	padding: 6px 10px;
+	margin-top: 8px;
+	margin-right: 16px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+}
+
+	.topnav .search-container button:hover {
+		background: #ccc;
+	}
+
+@media screen and (max-width: 600px) {
+	.topnav .search-container {
+		float: none;
+	}
+
+		.topnav a, .topnav input[type=text], .topnav .search-container button {
+			float: none;
+			display: block;
+			text-align: left;
+			width: 100%;
+			margin: 0;
+			padding: 14px;
+		}
+
+	.topnav input[type=text] {
+		border: 1px solid #ccc;
+	}
+}

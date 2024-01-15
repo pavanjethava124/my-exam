@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="client.master.cs" Inherits="rto_examination.client" %>
+  
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+     <link href="image/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--bootstrap 5!-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate">
+    </script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("myid")
+        }
+    </script>
+    <div id="myid" style="color:black; width:50%">Select your Language:</div>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            border: 1px solid #FFFFFF;
+            background-color: #0000FF;
+        }
+        .auto-style2 {
+            height: 52px;
+        }
+        .auto-style3 {
+            width: 179px;
+            height: 64px;
+        }
+        .auto-style4 {
+            width: 199px;
+            height: 96px;
+        }
+    </style>
+    </head>
+<body>
+    <form id="form1" runat="server">
+        <table class="auto-style1">
+            <tr>
+               <td class="auto-style2" style="text-decoration:none;">
+                   <p>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-home" style="color:white;"></i><a href="WebForm1.aspx" style="color:white;">Home</a></p>
+                   <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+  
+                </td>
+                  
+            </tr>
+        </table>
+        <br />
+        <br />
+        <img src="image/unnamed.png" style="height: 78px; width: 114px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img alt="" class="auto-style3" align="center" src="image/logo-parivahan-sewa-en.png" />
+        <img alt="" class="auto-style4" align="right" src="image/g20-logo.png" />
+         
+        <div>
+			 <div>  
+            <asp:Menu ID="Menu1" runat="server" BackColor="#1E90FF" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="white" Orientation="Horizontal" StaticSubMenuIndent="10px" Width="100%">
+                <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                <DynamicMenuItemStyle HorizontalPadding="18px" VerticalPadding="12px" />
+                <DynamicMenuStyle BackColor="#00BFFF" />
+                <DynamicSelectedStyle BackColor="#6495ED" />
+                <Items>
+                    <asp:MenuItem Text="About us" Value="About us" NavigateUrl="~/about.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Contact us" Value="Contact us" NavigateUrl="~/contact.aspx">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Book slot" Value="Book slot">
+                        <asp:MenuItem Text="Two wheel" Value="Two wheel"></asp:MenuItem>
+                        <asp:MenuItem Text="Four wheel" Value="Four wheel"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Login" Value="Login" ></asp:MenuItem>
+                    <asp:MenuItem Text="Feedback" Value="Feedback" NavigateUrl="~/feedback.aspx" ></asp:MenuItem>
+                </Items>
+                <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                <StaticMenuItemStyle HorizontalPadding="15px" VerticalPadding="15px" />
+                <StaticSelectedStyle BackColor="#507CD1" />
+            </asp:Menu>
+                
+                 
+        </div>
+        </div>
+    <div style="background:white; ">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        <div class="footer">
+<div class="footer-contain">
+	<div class="footer-col-1">
+		<h3 style="color:white;">Download our App</h3>
+		<div class="app-logo">
+			<img   src="image/gicon.png" height="50px" />
+			<img src="image/aicon.png" height="50px" />
+		</div>
+	</div>
+		<div class="footer-col-2">
+			<img src="image/rto.png">
+			<h2 style="color:white;">RTO Exam:Driving License Test</h2>
+			<p style="color:white;">Best app for practice</p>
+		</div>
+    	<div class="footer-col-3">
+			<img src="image/WhatsApp%20Image%202023-10-26%20at%202.50.23%20PM.jpeg"  /> 
+			<h2 style="color:white;">Scan QR code</h2>
+			<p style="color:white;">Download practice to examination</p>
+		</div>
+		<div class="footer-col-4">
+		<h3 style="color:white;">Terms and policies</h3>
+		<ul style="color:white; text-decoration:none;">
+			<li><a href="" style="color:white; text-decoration:none;">Privacy policy</a></li>
+			<li><a href="" style="color:white; text-decoration:none;">Hyperlink policy</a></li>
+			
+		</ul>
+		</div>
+
+		<div class="footer-col-5">
+		<h3 style="color:white;">Need help</h3>
+		<ul>
+			<li><a href="" style="color:white; text-decoration:none;">Contact us</a></li>
+			<li><a href="" style="color:white; text-decoration:none;">About us</a></li>
+			<li><a href="" style="color:white; text-decoration:none;">Feedback</a></li>
+			<li><a href="" style="color:white; text-decoration:none;">Help</a></li>
+		</ul>
+		</div>
+</div>
+<hr />
+<p class="copyright">Copyright 2023 -RTO</p>
+</div>
+
+        </form>
+</body>
+</html>
