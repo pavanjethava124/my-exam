@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 
 namespace rto_examination
 {
@@ -25,8 +26,8 @@ namespace rto_examination
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
-                SqlConnection con = new SqlConnection(@"Data Source=PAVAN\SQLEXPRESS;Initial Catalog=rtoquiz;Integrated Security=True");
+            String newcon = WebConfigurationManager.ConnectionStrings["mycon"].ToString();       
+                SqlConnection con = new SqlConnection(newcon);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("insert into rating(name,email,phone,city,rating)values('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text + "','" + Convert.ToInt32(rating.ToString()) + "')", con);
                 cmd.ExecuteNonQuery();

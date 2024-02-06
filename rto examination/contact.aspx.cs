@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
+using System.Web.Configuration;
 
 namespace rto_examination
 {
@@ -47,8 +48,9 @@ namespace rto_examination
             }
             String today = DateTime.Now.ToLongDateString().ToString();
             String query = "insert into cont(name,email,mobile,message,messagedate) values('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text + "','" + today + "')";
-            String mycon = @"Data Source=PAVAN\SQLEXPRESS;Initial Catalog=rtoquiz;Integrated Security=True";
-            SqlConnection con = new SqlConnection(mycon);
+            String newcon = WebConfigurationManager.ConnectionStrings["mycon"].ToString();
+            SqlConnection con = new SqlConnection(newcon);
+
             con.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = query;
