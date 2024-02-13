@@ -5,16 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace rto_examination
+namespace ECommerceBeeBox.Seller
 {
-    public partial class panel : System.Web.UI.Page
+    public partial class Seller : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
         }

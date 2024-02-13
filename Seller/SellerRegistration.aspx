@@ -1,9 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/client.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="rto_examination.register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SellerRegistration.aspx.cs" Inherits="ECommerceBeeBox.Seller.SellerRegistration" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8">
+    <title>Seller Registration</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <link rel="stylesheet" href="../SellerTemplate/assets/extra-libs/c3/MultiSteps.css">
@@ -33,9 +38,66 @@
             font-size: small;
         }
     </style>
+</head>
+<body>
+
+    <form id="msform" runat="server">
+
+        <script type="text/javascript">
+            <%-- function fetchData() {
+
+                var uname = document.getElementById('<%= txtFullName.ClientID %>').value;
+                var checkName = document.getElementById('CheckName');
+
+                // Using the fetch API
+                fetch('SellerRegistration.aspx/GetData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: uname }) // If you need to send data to the server, include it here
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.d) {
+                            document.getElementById('CheckName').innerHTML = 'This UserName is Registered';
+                        }
+                        else {
+                            document.getElementById('CheckName').innerHTML = '';
+                        }
+                       
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }--%>
+
+            //function CheckUserName(oName) {
+
+
+            //    PageMethods.UserNameChecker(oName.value, OnSucceeded);
+            //}
+
+            //function OnSucceeded(result, userContext, methodName) {
+            //    var lbl = document.getElementById('CheckName');
+
+            //    if (methodName == "UserNameChecker") {
+            //        if (result == true) {
+            //            lbl.innerHTML = 'username not available';
+            //            lbl.style.color = "red";
+            //        }
+            //        else {
+            //            lbl.innerHTML = 'username available';
+            //            lbl.style.color = "green";
+            //        }
+            //    }
+            //} 
+
+        </script>
 
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
+        <%--Preview Text and Image--%>
         <script type="text/javascript">
 
             //For disappearing alert message
@@ -59,7 +121,7 @@
             $(document).ready(function () {
                 $('#<%= txtEmail.ClientID %>').on('keyup', function () {
                     var textBoxValue = $(this).val();
-                    $('#<%= lblMail.ClientID %>').text(textBoxValue);
+                    $('#lblEmail').text(textBoxValue);
                 });
             });
 
@@ -75,7 +137,8 @@
             $(document).ready(function () {
                 $('#<%= txtAddress.ClientID %>').on('keyup', function () {
                     var textBoxValue = $(this).val();
-                    $('#<%= lblAddress.ClientID %>').text(textBoxValue);
+<%--                    //$('#<%= lblAddress.ClientID %>').text(textBoxValue);--%>
+                    $('#lblAdd').text(textBoxValue);
                 });
             });
 
@@ -127,6 +190,7 @@
             }
         </script>
 
+        <%--Validation--%>
         <script type="text/javascript">
 
             //for Name
@@ -141,7 +205,6 @@
                 } else {
                     spanname.innerText = '';
                 }
-
             }
 
             //for Email
@@ -283,7 +346,6 @@
                 }
             }
         </script>
-
 
         <!--Validation for Button Click -->
         <script type="text/javascript">
@@ -475,17 +537,24 @@
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Personal Information</h2>
-                                        <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" onkeyup="Name()" ClientIDMode="Static"></asp:TextBox>
-                                        <span id="txtNameError" class="error"></span>
-                                        <br />
-                                        <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" onkeyup="Address()" ClientIDMode="Static" TextMode="MultiLine"></asp:TextBox>
-                                        <span id="AddressError" class="error"></span>
-                                        <br>
-                                        <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" onkeyup="Email()" ClientIDMode="Static"></asp:TextBox>
-                                        <span id="emailError" class="error"></span>
+                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>
+                                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" onkeyup="Name()" ClientIDMode="Static" AutoPostBack="true" OnTextChanged="txtFullName_TextChanged"></asp:TextBox>
+                                                <asp:Label ID="lblnameCheck" runat="server"></asp:Label>
+                                                <span id="CheckName"></span>
+                                                <span id="txtNameError" class="error"></span>
+                                                <br />
+                                                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" onkeyup="Address()" ClientIDMode="Static" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
+                                                <span id="AddressError" class="error"></span>
+                                                <br>
+                                                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" onkeyup="Email()" ClientIDMode="Static" AutoPostBack="true"></asp:TextBox>
+                                                <span id="emailError" class="error"></span>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
                                         <asp:FileUpload ID="fuSellerImg" runat="server" onchange="ImagePreview(this);" />
                                     </div>
                                     <input type="button" name="next" class="next action-button" value="Next Step" />
+
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
@@ -526,14 +595,14 @@
                                                 <td>Name</td>
                                                 <td>
                                                     <asp:Label ID="lblName" runat="server"></asp:Label>
-
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td>Address</td>
                                                 <td>
-                                                    <asp:Label ID="lblAddress" runat="server"></asp:Label>
+<%--                                                    <asp:Label ID="lblAddress" runat="server"></asp:Label>--%>
+                                                    <label id="lblAdd"></label>
 
                                                 </td>
                                             </tr>
@@ -541,7 +610,10 @@
                                             <tr>
                                                 <td>Email</td>
                                                 <td>
-                                                    <asp:Label ID="lblMail" runat="server"></asp:Label></td>
+<%--                                                    <asp:Label ID="lblMail" runat="server"></asp:Label>--%>
+                                                    <label id="lblEMail"></label>
+                                                </td>
+
                                             </tr>
 
                                             <tr>
@@ -588,14 +660,14 @@
                                         </table>
 
                                         <span>
-                                            <ajaxtoolkit:passwordstrength id="PasswordStrength1" runat="server" targetcontrolid="txtPassword" />
+                                            <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" TargetControlID="txtPassword" />
                                         </span>
                                         <asp:TextBox ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" onkeyup="Password()" ClientIDMode="Static">
                                         </asp:TextBox>
                                         <asp:TextBox ID="txtConfirmPassword" runat="server" placeholder="Confirm Password" TextMode="Password">
                                         </asp:TextBox>
                                         <span>
-                                            <ajaxtoolkit:passwordstrength id="PasswordStrength3" runat="server" targetcontrolid="txtConfirmPassword" />
+                                            <ajaxToolkit:PasswordStrength ID="PasswordStrength3" runat="server" TargetControlID="txtConfirmPassword" />
                                         </span>
 
                                         <span id="passError" class="error"></span>
@@ -617,6 +689,12 @@
                 </div>
             </div>
         </div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    
-</asp:Content>
+
+    </form>
+
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <%--    <script src="../SellerTemplate/assets/extra-libs/c3/MultiSteps.js"></script>--%>
+</body>
+</html>
+

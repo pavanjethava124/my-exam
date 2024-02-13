@@ -7,10 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace rto_examination.Admin
+namespace ECommerceBeeBox.Seller
 {
-    public partial class WebForm1
+
+
+    public partial class Dashboard
     {
     }
 }
