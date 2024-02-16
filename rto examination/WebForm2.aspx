@@ -6,7 +6,26 @@
 <head runat="server">
     <title></title>
     <style>
+          <style type="text/css">
+        .auto-style1 {
+            border-style: none;
+            border-color: inherit;
+            border-width: 0;
+            background: skyblue;
+            font-weight: bold;
+            color: white;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
 
+        .error {
+            color: red;
+            font-weight: bold;
+            font-size: small;
+        }
+    </style>
     </style>
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
@@ -18,6 +37,135 @@
    <!--     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'> !-->
     
+    
+        <%--Preview Text and Image--%>
+        <script type="text/javascript">
+
+            
+
+            //forEmail
+            $(document).ready(function () {
+                $('#<%= txtEmail.ClientID %>').on('keyup', function () {
+                    var textBoxValue = $(this).val();
+                    $('#lblEmail').text(textBoxValue);
+                });
+            });
+
+         
+
+            //forAddress
+            $(document).ready(function () {
+                $('#<%= txtAddress.ClientID %>').on('keyup', function () {
+                    var textBoxValue = $(this).val();
+<%--                    //$('#<%= lblAddress.ClientID %>').text(textBoxValue);--%>
+                    $('#lblAdd').text(textBoxValue);
+                });
+            });
+
+            </script>
+     <script type="text/javascript">
+
+         //for Name
+         function Name() {
+             var name = document.getElementById('<%= txtFullName.ClientID %>');
+             var spanname = document.getElementById('txtNameError');
+             var regex1 = /^[a-zA-Z\s]*$/;
+
+             // Check if the Name is not empty
+             if (name.value.trim() === '' || !regex1.test(name.value)) {
+                 spanname.innerText = 'Please enter a valid Name';
+             } else {
+                 spanname.innerText = '';
+             }
+         }
+
+         //for Email
+         function Email() {
+
+             var email = document.getElementById('<%= txtEmail.ClientID %>');
+                var spmalEmail = document.getElementById('emailError');
+                var regex2 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                // Check if the Email is not empty
+                if (email.value.trim() === '' || !regex2.test(email.value)) {
+                    spmalEmail.innerText = 'Please enter a valid Email';
+                } else {
+                    spmalEmail.innerText = '';
+                }
+            }
+
+            //for Address
+            function Address() {
+
+             var Address = document.getElementById('<%= txtAddress.ClientID %>');
+             var spanAddress = document.getElementById('AddressError');
+             var regex4 = /^[a-zA-Z0-9\s.,#-]+$/;
+
+             // Check if the Address is not empty
+             if (Address.value.trim() === '' || !regex4.test(Address.value)) {
+                 spanAddress.innerText = 'Please enter a Address name';
+             } else {
+                 spanAddress.innerText = '';
+             }
+         }
+         $(".next").click(function () {
+             // Validate before proceeding to the next step
+             if (validateStep1()) {
+                 var current_fs = $(this).parent();
+                 var next_fs = $(this).parent().next();
+
+                 // Add Class Active
+                 $("#progressbar li").eq($("fieldset:visible").index(next_fs)).addClass("active");
+
+                 // Show the next fieldset
+                 next_fs.show();
+                 // Hide the current fieldset with style
+                 current_fs.animate({ opacity: 0 }, {
+                     step: function (now) {
+                         // For making fieldset appear animation
+                         var opacity = 1 - now;
+
+                         current_fs.css({
+                             'display': 'none',
+                             'position': 'relative'
+                         });
+                         next_fs.css({ 'opacity': opacity });
+                     },
+                     duration: 600
+                 });
+             }
+         });
+
+         $(".previous").click(function () {
+             var current_fs = $(this).parent();
+             var previous_fs = $(this).parent().prev();
+
+             // Remove class active
+             $("#progressbar li").eq($("fieldset:visible").index(current_fs)).removeClass("active");
+
+             // Show the previous fieldset
+             previous_fs.show();
+
+             // Hide the current fieldset with style
+             current_fs.animate({ opacity: 0 }, {
+                 step: function (now) {
+                     // For making fieldset appear animation
+                     var opacity = 1 - now;
+
+                     current_fs.css({
+                         'display': 'none',
+                         'position': 'relative'
+                     });
+                     previous_fs.css({ 'opacity': opacity });
+                 },
+                 duration: 600
+             });
+         });
+
+            });
+
+     </script>
+
 <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
@@ -26,7 +174,8 @@
                 <p>Fill all form field to go to next step</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" runat="server">
+                            
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="account"><strong>Account</strong></li>
@@ -38,14 +187,21 @@
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">Personal Information</h2>
-                                    <input type="text" name="fname" placeholder="Full Name According Addhar card" required=""  runat="server"/>
-                                    <input type="text" name="lname" placeholder="Date of birth" required=""  runat="server"/>
-                                    <input type="text" name="phno" placeholder="Contact No." required=""  runat="server"/>
-                                    <input type="radio" />Male &nbsp;&nbsp;<input type="radio" />Female
+                                                <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" onkeyup="Name()" ClientIDMode="Static" AutoPostBack="true" ></asp:TextBox>
+                                                <asp:Label ID="lblnameCheck" runat="server"></asp:Label>
+                                                <span id="CheckName"></span>
+                                                <span id="txtNameError" class="error"></span>
+                                                <br />
+                                                <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" onkeyup="Address()" ClientIDMode="Static" AutoPostBack="true" TextMode="MultiLine"></asp:TextBox>
+                                                <span id="AddressError" class="error"></span>
+                                                <br>
+                                                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" onkeyup="Email()" ClientIDMode="Static" AutoPostBack="true"></asp:TextBox>
+                                                <span id="emailError" class="error"></span>
+                                        
+                                        <asp:FileUpload ID="fuSellerImg" runat="server" onchange="ImagePreview(this);" />
                                                          
                               </div>                               
-                                <input type="button" name="next" class="next action-button" value="Next Step" required="" />
-                            </fieldset>
+                                <input type="button" name="next" class="next action-button" value="Next Step" /> </fieldset>
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">Account Information</h2>
@@ -130,7 +286,7 @@
         </div>
     </div>
 </div>
-   
+   </form>
     <script type='text/javascript' src='#'></script>
                                 <script type='text/javascript' src='#'></script>
                                 <script type='text/javascript' src='#'></script>
